@@ -1,0 +1,42 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.1  24452 15760 ?        Ss   03:05   0:08 /sbin/init
+root           2  0.0  0.0   3180  2204 ?        Sl   03:05   0:00 /init
+root           7  0.0  0.0   3180  2040 ?        Sl   03:05   0:00 plan9 --control-socket 7 --log-level 4 --server-fd 8 --pipe-fd 10 --log-truncate
+root          54  0.0  0.2  50392 18016 ?        S<s  03:05   0:06 /usr/lib/systemd/systemd-journald
+systemd+      89  0.0  0.1  22416 14524 ?        Ss   03:05   0:00 /usr/lib/systemd/systemd-resolved
+root          98  0.2  0.1  35468 12368 ?        Ss   03:05   1:17 /usr/lib/systemd/systemd-udevd
+_rpc         112  0.0  0.0   6868  4168 ?        Ss   03:05   0:00 /usr/sbin/rpcbind -f -w
+root         161  0.0  0.0   2888  1948 ?        Ss   03:05   0:00 /bin/sh /usr/lib/systemd/scripts/chronyd-starter.sh -n -F 1
+root         162  0.0  0.0   4472  3104 ?        Ss   03:05   0:00 /usr/sbin/cron -f -P
+message+     163  0.0  0.0   8800  5580 ?        Ss   03:05   0:01 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root         171  0.0  0.3  44096 29792 ?        Ss   03:05   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+root         178  0.0  0.1  18588  9456 ?        Ss   03:05   0:01 /usr/lib/systemd/systemd-logind
+syslog       187  0.0  0.0 220548  5872 ?        Ssl  03:05   0:01 /usr/sbin/rsyslogd -n -iNONE
+root         213  0.0  0.6 2257484 48492 ?       Ssl  03:05   0:28 /usr/bin/containerd
+root         224  0.0  0.0   5492  2728 tty1     Ss+  03:05   0:00 /usr/sbin/agetty --noreset --noclear --issue-file=/etc/issue:/etc/issue.d:/run/issue.d:/usr/lib/issue.d - linux
+root         271  0.0  1.0 2394236 87276 ?       Ssl  03:05   0:11 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+_chrony      284  0.0  0.1  24016 11648 ?        S    03:05   0:01 /usr/sbin/chronyd -n -F 1 -x
+_chrony      298  0.0  0.0  12096  2424 ?        S    03:05   0:00 /usr/sbin/chronyd -n -F 1 -x
+root         306  0.0  0.4 123460 32648 ?        Ssl  03:05   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         603  0.0  0.0   3212  1116 ?        Ss   03:05   0:00 /init
+root         605  0.0  0.0   3196  1184 ?        S    03:05   0:00 /init
+adity        608  0.0  0.0   2888  1928 pts/0    Ss+  03:05   0:00 sh
+root         611  0.0  0.0   8648  5588 ?        Ss   03:05   0:00 login -- adity
+adity        664  0.0  0.1  22812 13440 ?        Ss   03:05   0:00 /usr/lib/systemd/systemd --user
+adity        666  0.0  0.0  22920  4124 ?        S    03:05   0:00 (sd-pam)
+adity        699  0.0  0.0   6136  5484 pts/2    Ss+  03:05   0:00 -bash
+root         760  0.0  0.0   8500  5376 ?        Ss   03:05   0:00 login -- root
+root         791  0.0  0.1  22580 13484 ?        Ss   03:05   0:00 /usr/lib/systemd/systemd --user
+root         793  0.0  0.0  22928  4048 ?        S    03:05   0:00 (sd-pam)
+root         818  0.0  0.0   6136  5376 pts/3    Ss+  03:05   0:00 -bash
+root         944  0.0  0.0   3228  1384 ?        S    03:05   0:00 /init
+root         945  0.0  0.3 1287052 28536 pts/1   Ssl+ 03:05   0:02 /run/docker-desktop/docker-desktop-user-distro proxy --distro-name Ubuntu --docker-desktop-root /mnt/wsl/docker-desktop C:\Program Files\Docker\Docker\resources
+polkitd    16490  0.0  0.1 306444  8320 ?        Ssl  13:19   0:00 /usr/lib/polkit-1/polkitd --no-debug --log-level=notice
+root       16837  0.0  0.1 1866032 15068 ?       Ssl  13:26   0:00 /usr/libexec/wsl-pro-service
+root       16949  0.0  0.0   3188  1120 ?        Ss   13:30   0:00 /init
+root       16950  0.0  0.0   3204  1260 ?        S    13:30   0:00 /init
+adity      16952  0.0  0.0   6268  5612 pts/4    Ss   13:30   0:00 -bash
+adity      17242  0.0  0.0   6268  3892 pts/4    S+   13:36   0:00 -bash
+root       17254  0.0  0.0  35472  6568 ?        S    13:37   0:00 (udev-worker)
+root       17255  0.0  0.0  35472  6568 ?        S    13:37   0:00 (udev-worker)
+adity      17258  0.0  0.0   7164  4352 pts/4    R+   13:37   0:00 ps aux
