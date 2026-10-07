@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "github-actions/**"
+      - ".github/workflows/ci.yml"
+      - ".github/workflows/cd.yml"
+  push:
+    branches: [main]
+    paths:
+      - "github-actions/**"
+      - ".github/workflows/ci.yml"
+      - ".github/workflows/cd.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test application
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: github-actions
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run tests
+        run: |
+          set -o pipefail
+          mkdir -p test-results
+          python -m unittest discover -s tests -v 2>&1 | tee test-results/unittest.log
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: github-actions/test-results/unittest.log
+          if-no-files-found: ignore
+          retention-days: 7
+
+  build:
+    name: Build and smoke-test container
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build --tag calculator-demo:${{ github.sha }} ./github-actions
+
+      - name: Smoke-test Docker image
+        run: |
+          result="$(docker run --rm calculator-demo:${{ github.sha }} 10 + 5)"
+          echo "$result"
+          test "$result" = "Result: 15"
+
+      - name: Save image artifact
+        run: docker save calculator-demo:${{ github.sha }} --output calculator-demo.tar
+
+      - name: Upload image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: calculator-demo-image
+          path: calculator-demo.tar
+          retention-days: 7
